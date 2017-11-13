@@ -121,6 +121,8 @@ double char_to_double(const char* a)
 	return whole + (frac * 0.10);
 }
 
+//this function may not be used
+
 char* get_input(ifstream& input)
 {
 	static char a[30];
