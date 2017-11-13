@@ -3,7 +3,7 @@
 using namespace std;
 #include "hydro.h"
 #include <fstream>
-#include "list.h"
+//#include "list.h"
 #include <string>
 
 int main()
@@ -174,7 +174,8 @@ void nextTask(const int x, FlowList& list)
         case 5: cout << "\nProgram terminated successfully.\n";
                 exit(1);
             
-        default: break;
+        default: cout << "\nInvalid request.\n";
+                break;
 	}
     pressEnter();
     return;
