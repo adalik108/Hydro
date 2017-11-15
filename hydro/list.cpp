@@ -25,6 +25,7 @@ FlowList& FlowList::operator =(const FlowList& rhs)
 FlowList::~FlowList()
 {
 	destroy();
+    cout << "dtor" << endl;
 }
 
 //void FlowList::buildList(const ifstream&)
