@@ -36,7 +36,7 @@ char* get_input(ifstream& input);
 
 ListItem set_item(ifstream& input);
 
-void nextTask(const int x, FlowList& list);
+int nextTask(const int x, FlowList& list);
 
 
 

@@ -12,8 +12,7 @@ int main()
 	FlowList list;
 	list.set_numData(readData(input, list));
 	displayHeader();
-	while(1)
-		nextTask(menu(), list);
+    while(nextTask(menu(), list));
 }
 
 void displayHeader()
@@ -156,8 +155,9 @@ void printList_original(FlowList& list)
 	//exit(1);
 }
 
-void nextTask(const int x, FlowList& list)
+int nextTask(const int x, FlowList& list)
 {
+    int a = 1;
 	switch(x){
 		case 1: display(list);
 				break;
@@ -172,13 +172,15 @@ void nextTask(const int x, FlowList& list)
 				break;
 
         case 5: cout << "\nProgram terminated successfully.\n";
-                exit(1);
+                a = 0;
+                break;
             
         default: cout << "\nInvalid request.\n";
                 break;
 	}
-    pressEnter();
-    return;
+    if(a)
+        pressEnter();
+    return a;
 }
 
 void display(FlowList& list)
