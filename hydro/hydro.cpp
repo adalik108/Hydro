@@ -103,10 +103,8 @@ double char_to_double(const char* a)
 	double whole = 0;
 	double frac = 0;
 	while(a[i] != '.' && a[i] != '\0')
-	{
 		whole = (whole * 10) + (a[i++] - '0');
-		//cout << whole << endl;
-	}
+    
     if(a[i] != '\0')
     {
         while(a[i++]);
