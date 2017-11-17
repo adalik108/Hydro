@@ -27,18 +27,18 @@ void pressEnter()
     //
     //std::cin.clear();
     cout << "\n<<<< Press Enter to Continue >>>>\n";
-    if(a == 0)
-    {
+   // if(a == 0)
+    //{
         cin.get();
-        a++;
-    }
-    else
-    {
-        cin.get();
+       // a++;
+    //}
+    //else
+   // {
+      //  cin.get();
         
         // cin.get();
         //cout <<a;
-    }
+   // }
 }
 
 int menu()
@@ -53,9 +53,7 @@ int menu()
     if(cin.fail()){
         a= 6;
     }
-    
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
     
     return a;
 }
@@ -169,6 +167,7 @@ void printList_original(FlowList& list)
 int nextTask(const int x, FlowList& list)
 {
     int a = 1;
+
     switch(x){
         case 1: display(list);
             break;
@@ -189,8 +188,13 @@ int nextTask(const int x, FlowList& list)
         default: cout << "\nInvalid request.\n";
             break;
     }
+    
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if(a)
         pressEnter();
+    //cin.clear();
+    //cin.ignore(numeric_limits<streamsize>::max(), '\n');  theres something fucked up here!
     return a;
 }
 
