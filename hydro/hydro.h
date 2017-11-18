@@ -38,6 +38,6 @@ ListItem set_item(ifstream& input);
 
 int nextTask(const int x, FlowList& list);
 
-
+void clearBuffer();
 
 #endif

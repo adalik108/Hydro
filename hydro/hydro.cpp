@@ -1,3 +1,12 @@
+/*
+ Bugs:
+ 
+     after non-numerical invalid input during menu, at least two inputs required to advance (ie enter enter, or a enter)
+         -maybe caused by the if(fail) in menu
+ */
+
+
+
 #include <iostream>
 #include <stdlib.h>
 using namespace std;
@@ -24,36 +33,22 @@ void displayHeader()
 void pressEnter()
 {
     static int a = 0;
-    //
-    //std::cin.clear();
+    
     cout << "\n<<<< Press Enter to Continue >>>>\n";
-   // if(a == 0)
-    //{
-        cin.get();
-       // a++;
-    //}
-    //else
-   // {
-      //  cin.get();
-        
-        // cin.get();
-        //cout <<a;
-   // }
+    cin.get();
 }
 
 int menu()
 {
     int a = 0;
-    //cin.clear();
-    // fflush(stdin);
     cout << "\nPlease select from the following operations\n" << "    1.  Display flow list, average, and median\n" << "    2.  Add data\n" << "    3.  Save data into the file\n";
     cout << "    4.  Remove data\n" << "    5.  Quit\n" << "    Enter your choice (1, 2, 3, 4, or 5) :\n";
     cin >> a;
     
     if(cin.fail()){
         a= 6;
+        clearBuffer();
     }
-
     
     return a;
 }
@@ -189,12 +184,12 @@ int nextTask(const int x, FlowList& list)
             break;
     }
     
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    //cin.clear();
+   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
     if(a)
         pressEnter();
-    //cin.clear();
-    //cin.ignore(numeric_limits<streamsize>::max(), '\n');  theres something fucked up here!
+   cin.clear();
+   cin.ignore(numeric_limits<streamsize>::max(), '\n'); // theres something fucked up here!
     return a;
 }
 
@@ -288,3 +283,10 @@ void saveData(FlowList& list)
     cout << "\nData was saved into the file.\n";
     outFile.close();
 }
+
+void clearBuffer()
+{
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
