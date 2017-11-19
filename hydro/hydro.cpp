@@ -128,27 +128,41 @@ double char_to_double(const char* a)
 
 void getNumInput(ifstream& input, int& dest)
 {
-    //static string a;
-    //int a;
     input >> dest;
-    //cout << a << endl;
-    //return a;
+    
+    if(cin.fail())
+        dest = Y_LIM_HIGH + 1;
 }
 
 void getNumInput(ifstream& input, double& dest)
 {
-    //static string a;
-    //int a;
     input >> dest;
-    //cout << a << endl;
-    //return a;
+    
+    if(cin.fail())
+        dest = F_LIM_LOW - 1;
+}
+
+void getNumInput(int& dest)
+{
+    cin >> dest;
+    
+    if(cin.fail())
+        dest = Y_LIM_HIGH + 1;
+}
+
+void getNumInput(double& dest)
+{
+    cin >> dest;
+    
+    if(cin.fail())
+        dest = F_LIM_LOW - 1;
 }
 
 ListItem set_item(ifstream& input)
 {
     ListItem item;
     //string a;
-    char a[20];
+    //char a[20];
     //input >> a;
     //cout << a << endl;
     //exit(1);
@@ -195,13 +209,12 @@ int nextTask(const int x, FlowList& list)
             break;
     }
     
-    if(a == 1)
+    if(a)
     {
         clearBuffer();
         pressEnter();
 
     }
-    cout << "clear \n";
    // clearBuffer();
     return a;
 }
@@ -248,15 +261,15 @@ double median(FlowList& list)
 void addData(FlowList& list)
 {
     ListItem item;
-    char a[20];
+    //char a[20];
     cout << "\nPlease enter a year:  ";
-    cin >> a;
-    item.year = char_to_int(a);
+    //cin >> a;
+    getNumInput(item.year);
     cout << "\nPlease enter a flow:  ";
-    cin >> a;
-    item.flow = char_to_double(a);
+    //cin >> a;
+    getNumInput(item.flow);
     
-    if(item.year < 0 || item.year >= 5000 || item.flow < 0)
+    if(item.year < Y_LIM_LOW || item.year > Y_LIM_HIGH || item.flow < F_LIM_LOW)
         cerr << "\nInvalid data\n";
     
     else if(!list.isDuplicate(item.year))
@@ -274,10 +287,8 @@ void addData(FlowList& list)
 void removeData(FlowList& list)
 {
     int year;
-    char a[20];
     cout << "\nPlease enter the year you want to remove:  ";
-    cin >> a;
-    year = char_to_int(a);
+    getNumInput(year);
     if(list.isDuplicate(year))
     {
         list.removeNode();

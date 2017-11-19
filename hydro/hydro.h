@@ -4,6 +4,10 @@
 
 #include "list.h"
 
+#define Y_LIM_LOW 0
+#define Y_LIM_HIGH 4999
+#define F_LIM_LOW 0
+
 int readData(ifstream& input, FlowList& list);
 
 int menu();
