@@ -31,23 +31,16 @@ void displayHeader()
 
 void pressEnter()
 {
-    //static int a = 0;
-    
     cout << "\n<<<< Press Enter to Continue >>>>\n";
-    //cin.get();
     clearBuffer();
 }
 
 int menu()
 {
-    int a = 0;
+    int a;
     cout << "\nPlease select from the following operations\n" << "    1.  Display flow list, average, and median\n" << "    2.  Add data\n" << "    3.  Save data into the file\n";
     cout << "    4.  Remove data\n" << "    5.  Quit\n" << "    Enter your choice (1, 2, 3, 4, or 5) :\n";
-    cin >> a;
-    
-    if(cin.fail()){
-        a = 6;
-    }
+    getNumInput(a);
     
     return a;
 }
@@ -76,12 +69,13 @@ int readData(ifstream& input, FlowList& list)
 {
     int x = 0;
     openFile_r("/Users/aaron.dalik/Documents/Engg_Year_2/ENCM_339/Hydro/hydro/flow.txt", input);
+    ListItem item;
     
     while(!input.eof())
     {
-        ListItem item;
+        //ListItem item;
         item = set_item(input);
-        if(item.year >= 0 && item.year < 5000 && item.flow >= 0)
+        if(validItem(item))
         {
             list.addNode();
             list.list_set_item(item);
@@ -92,38 +86,6 @@ int readData(ifstream& input, FlowList& list)
     
     return x;
 }
-
-int char_to_int(const char* a)
-{
-    int sum = 0;
-    for(int i = 0; a[i] != '\0'; i++)
-        sum = (sum * 10) + (a[i] - '0');
-    
-    return sum;
-}
-
-double char_to_double(const char* a)
-{
-    int i = 0;
-    double whole = 0;
-    double frac = 0;
-    while(a[i] != '.' && a[i] != '\0')
-        whole = (whole * 10) + (a[i++] - '0');
-    
-    if(a[i] != '\0')
-    {
-        while(a[++i]);
-        
-        i--;
-        
-        while(a[i] != '.')
-            frac = (frac * 0.10) + (a[i--] - '0');
-    }
-    
-    return whole + (frac * 0.10);
-}
-
-//this function may not be used
 
 void getNumInput(ifstream& input, int& dest)
 {
@@ -160,17 +122,9 @@ void getNumInput(double& dest)
 ListItem set_item(ifstream& input)
 {
     ListItem item;
-    //string a;
-    //char a[20];
-    //input >> a;
-    //cout << a << endl;
-    //exit(1);
     getNumInput(input, item.year);
     getNumInput(input, item.flow);
-    //strcpy(a, get_input(input));
-    //input >> a;
     
-    //item.flow = char_to_double(a);
     return item;
 }
 
@@ -260,15 +214,12 @@ double median(FlowList& list)
 void addData(FlowList& list)
 {
     ListItem item;
-    //char a[20];
     cout << "\nPlease enter a year:  ";
-    //cin >> a;
     getNumInput(item.year);
     cout << "\nPlease enter a flow:  ";
-    //cin >> a;
     getNumInput(item.flow);
     
-    if(item.year < Y_LIM_LOW || item.year > Y_LIM_HIGH || item.flow < F_LIM_LOW)
+    if(!validItem(item))
         cerr << "\nInvalid data\n";
     
     else if(!list.isDuplicate(item.year))
@@ -312,5 +263,13 @@ void clearBuffer()
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     //cin.ignore();
+}
+
+bool validItem(ListItem& item)
+{
+    if(item.year < Y_LIM_LOW || item.year > Y_LIM_HIGH || item.flow < F_LIM_LOW)
+        return false;
+    
+    return true;
 }
 

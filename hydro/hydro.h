@@ -32,10 +32,6 @@ void openFile_w(const char* file, ofstream& outFile);
 
 void openFile_r(const char* file, ifstream& inFile);
 
-int char_to_int(const char* a);
-
-double char_to_double(const char* a);
-
 void getNumInput(ifstream& input, int& dest);
 
 void getNumInput(ifstream& input, double& dest);
@@ -49,5 +45,7 @@ ListItem set_item(ifstream& input);
 int nextTask(const int x, FlowList& list);
 
 void clearBuffer();
+
+bool validItem(ListItem& item);
 
 #endif
