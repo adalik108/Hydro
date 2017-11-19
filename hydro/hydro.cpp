@@ -1,8 +1,7 @@
 /*
  Bugs:
  
-     after non-numerical invalid input during menu, at least two inputs required to advance (ie enter enter, or a enter)
-         -maybe caused by the if(fail) in menu
+    
  */
 
 
