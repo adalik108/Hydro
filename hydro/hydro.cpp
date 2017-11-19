@@ -73,7 +73,6 @@ int readData(ifstream& input, FlowList& list)
     
     while(!input.eof())
     {
-        //ListItem item;
         item = set_item(input);
         if(validItem(item))
         {
@@ -126,13 +125,6 @@ ListItem set_item(ifstream& input)
     getNumInput(input, item.flow);
     
     return item;
-}
-
-void printList_original(FlowList& list)
-{
-    cout << "Flow List: \n";
-    list.get_list_original();
-    //exit(1);
 }
 
 int nextTask(const int x, FlowList& list)
@@ -200,15 +192,32 @@ double average(FlowList& list)
 
 double median(FlowList& list)
 {
-    int i = 0;
+    int i = 1;
     list.findHeadS();
-    while(i < (list.get_numData() / 2))
+    if(list.get_numData() % 2 != 0)
     {
-        list.nextNode();
-        i++;
+        while((double)i < (double)(list.get_numData() / 2.0))
+        {
+            list.nextNode();
+            i++;
+        }
+    
+        return list.get_flow();
     }
     
-    return list.get_flow();
+    else
+    {
+        double a;
+        while(i < (list.get_numData() / 2))
+        {
+            list.nextNode();
+            i++;
+        }
+        a = list.get_flow();
+        list.nextNode();
+        
+        return (a + list.get_flow()) / 2;
+    }
 }
 
 void addData(FlowList& list)
