@@ -97,6 +97,12 @@ void FlowList::findLast(Node*& curr)
 		nextNode(curr);
 }
 
+void FlowList::findLast()
+{
+    while(curr -> next != 0)
+        nextNode(curr);
+}
+
 void FlowList::nextNode(Node*& curr)
 {
 	curr = curr -> next;
@@ -361,6 +367,14 @@ void FlowList::findHeadS()
 	curr = headS;
 }
 
+void FlowList::find(const int x)
+{
+    int i = 0;
+    findHeadS();
+    while(i++ < x)
+        nextNode();
+}
+
 Node* FlowList::get_curr()
 {
 	return curr;
@@ -413,7 +427,6 @@ void FlowList::writeList(ofstream& outFile)
         nextNode();
     }
 }
-
 
 
 

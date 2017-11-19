@@ -192,27 +192,18 @@ double average(FlowList& list)
 
 double median(FlowList& list)
 {
-    int i = 1;
-    list.findHeadS();
+   // int i = 1;
+    //list.findHeadS();
     if(list.get_numData() % 2 != 0)
     {
-        while((double)i < (double)(list.get_numData() / 2.0))
-        {
-            list.nextNode();
-            i++;
-        }
-    
+        list.find(list.get_numData()/2);
         return list.get_flow();
     }
     
     else
     {
         double a;
-        while(i < (list.get_numData() / 2))
-        {
-            list.nextNode();
-            i++;
-        }
+        list.find((list.get_numData()/2) - 1);
         a = list.get_flow();
         list.nextNode();
         

@@ -44,8 +44,6 @@ class FlowList
 
 		void addNode(Node*& head);
 
-		void findLast(Node*& curr);
-
 		void nextNode(Node*& curr);
 
 		void nextNode();
@@ -79,6 +77,12 @@ class FlowList
 		void findHeadO();
 
 		void findHeadS();
+    
+        void findLast(Node*& curr);
+    
+        void find(const int x);
+    
+        void findLast();
 
 		Node* get_curr();
     
