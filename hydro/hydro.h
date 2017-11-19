@@ -36,7 +36,13 @@ int char_to_int(const char* a);
 
 double char_to_double(const char* a);
 
-char* get_input(ifstream& input);
+void getNumInput(ifstream& input, int& dest);
+
+void getNumInput(ifstream& input, double& dest);
+
+void getNumInput(int& dest);
+
+void getNumInput(double& dest);
 
 ListItem set_item(ifstream& input);
 
