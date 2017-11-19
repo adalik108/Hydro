@@ -367,12 +367,12 @@ Node* FlowList::get_curr()
 	return curr;
 }
 
-bool FlowList::isDuplicate(ListItem& item)
+bool FlowList::isDuplicate(const int year)
 {
     findHeadO();
     while(curr != 0)
     {
-        if(curr -> item.year == item.year)
+        if(curr -> item.year == year)
             return true;
         
         else

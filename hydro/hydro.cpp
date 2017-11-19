@@ -32,10 +32,11 @@ void displayHeader()
 
 void pressEnter()
 {
-    static int a = 0;
+    //static int a = 0;
     
     cout << "\n<<<< Press Enter to Continue >>>>\n";
     cin.get();
+    //clearBuffer();
 }
 
 int menu()
@@ -46,8 +47,7 @@ int menu()
     cin >> a;
     
     if(cin.fail()){
-        a= 6;
-        clearBuffer();
+        a = 6;
     }
     
     return a;
@@ -126,29 +126,38 @@ double char_to_double(const char* a)
 
 //this function may not be used
 
-char* get_input(ifstream& input)
+void getNumInput(ifstream& input, int& dest)
 {
-    static char a[30];
-    input >> a;
-    cout << a << endl;
-    return a;
+    //static string a;
+    //int a;
+    input >> dest;
+    //cout << a << endl;
+    //return a;
+}
+
+void getNumInput(ifstream& input, double& dest)
+{
+    //static string a;
+    //int a;
+    input >> dest;
+    //cout << a << endl;
+    //return a;
 }
 
 ListItem set_item(ifstream& input)
 {
     ListItem item;
-    char a[30];
-    input >> a;
-    //strcpy(a, "hello");
-    //strcpy(a, get_input(input));
+    //string a;
+    char a[20];
+    //input >> a;
     //cout << a << endl;
     //exit(1);
-    item.year = char_to_int(a);
-    
+    getNumInput(input, item.year);
+    getNumInput(input, item.flow);
     //strcpy(a, get_input(input));
-    input >> a;
+    //input >> a;
     
-    item.flow = char_to_double(a);
+    //item.flow = char_to_double(a);
     return item;
 }
 
@@ -180,16 +189,20 @@ int nextTask(const int x, FlowList& list)
             a = 0;
             break;
             
+        //case 6: a = 2
+            
         default: cout << "\nInvalid request.\n";
             break;
     }
     
-    //cin.clear();
-   // cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    if(a)
+    if(a == 1)
+    {
+        clearBuffer();
         pressEnter();
-   cin.clear();
-   cin.ignore(numeric_limits<streamsize>::max(), '\n'); // theres something fucked up here!
+
+    }
+    cout << "clear \n";
+   // clearBuffer();
     return a;
 }
 
@@ -246,7 +259,7 @@ void addData(FlowList& list)
     if(item.year < 0 || item.year >= 5000 || item.flow < 0)
         cerr << "\nInvalid data\n";
     
-    else if(!list.isDuplicate(item))
+    else if(!list.isDuplicate(item.year))
     {
         list.addNode();
         list.list_set_item(item);
@@ -260,12 +273,12 @@ void addData(FlowList& list)
 
 void removeData(FlowList& list)
 {
-    ListItem item;
+    int year;
     char a[20];
     cout << "\nPlease enter the year you want to remove:  ";
     cin >> a;
-    item.year = char_to_int(a);
-    if(list.isDuplicate(item))
+    year = char_to_int(a);
+    if(list.isDuplicate(year))
     {
         list.removeNode();
         cout << "\nRecord was successfully removed.\n";
@@ -288,5 +301,6 @@ void clearBuffer()
 {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    //cin.ignore();
 }
 

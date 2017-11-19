@@ -82,7 +82,7 @@ class FlowList
 
 		Node* get_curr();
     
-        bool isDuplicate(ListItem& item);
+        bool isDuplicate(const int year);
     
         void removeNode();
     
