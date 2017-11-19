@@ -35,8 +35,8 @@ void pressEnter()
     //static int a = 0;
     
     cout << "\n<<<< Press Enter to Continue >>>>\n";
-    cin.get();
-    //clearBuffer();
+    //cin.get();
+    clearBuffer();
 }
 
 int menu()
