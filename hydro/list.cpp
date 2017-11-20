@@ -27,8 +27,6 @@ FlowList::~FlowList()
 	destroy();
 }
 
-//void FlowList::buildList(const ifstream&)
-
 void FlowList::list_set_item(const ListItem& input)
 {
 	curr -> item = input;
@@ -44,8 +42,6 @@ void FlowList::list_set_item(const int year, const double flow)
 	curr -> item.year = year;
 	curr -> item.flow = flow;
 }
-
-//ListItem FlowList::lsjd();
 
 void FlowList::addNode()
 {
@@ -251,27 +247,16 @@ void FlowList::insertNode(const ListItem& item)
 
 	if(curr == 0)
 	{
-		/*
-		temp -> prev = curr;
-		curr = temp;
-		curr -> next = 0;
-		headS = curr;
-		*/
-
 		addNode(headS);
 		list_set_item(item);
         delete temp;
-	
-		//cout << curr->item.flow << endl;
 	}
 
 	else
 	{
 
 		while(item.flow > curr -> item.flow && curr -> next != 0)
-		{
 			nextNode(curr);
-		}
 
 		if(curr -> next == 0)
 		{
@@ -309,12 +294,9 @@ void FlowList::insertNode(Node*& dest, const ListItem& item)
 		findHeadS();
 
 		if(curr == 0)
-		{	
-
+		{
 			addNode(headS);
 			list_set_item(item);
-	
-		//cout << curr->item.flow << endl;
 		}
 
 		else
@@ -322,10 +304,7 @@ void FlowList::insertNode(Node*& dest, const ListItem& item)
 			findHeadS();
 
 			while(item.flow > curr -> item.flow && curr -> next != 0)
-			{
 				nextNode(curr);
-		
-			}
 
 			if(curr -> next == 0)
 			{

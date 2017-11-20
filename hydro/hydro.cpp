@@ -11,7 +11,6 @@
 using namespace std;
 #include "hydro.h"
 #include <fstream>
-//#include "list.h"
 #include <string>
 
 int main()
@@ -148,8 +147,6 @@ int nextTask(const int x, FlowList& list)
             a = 0;
             break;
             
-        //case 6: a = 2
-            
         default: cout << "\nInvalid request.\n";
             break;
     }
@@ -160,7 +157,6 @@ int nextTask(const int x, FlowList& list)
         pressEnter();
 
     }
-   // clearBuffer();
     return a;
 }
 
@@ -192,8 +188,6 @@ double average(FlowList& list)
 
 double median(FlowList& list)
 {
-   // int i = 1;
-    //list.findHeadS();
     if(list.get_numData() % 2 != 0)
     {
         list.find(list.get_numData()/2);
@@ -207,7 +201,7 @@ double median(FlowList& list)
         a = list.get_flow();
         list.nextNode();
         
-        return (a + list.get_flow()) / 2;
+        return (a + list.get_flow()) / 2.0;
     }
 }
 
@@ -262,7 +256,6 @@ void clearBuffer()
 {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    //cin.ignore();
 }
 
 bool validItem(ListItem& item)
